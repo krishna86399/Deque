@@ -74,6 +74,30 @@ public class Deque<Item> implements Iterable<Item> {
 
     // return an iterator over items in order from front to back
     public Iterator<Item> iterator()
+    {
+        return new LinkedIterator(first); 
+    }
+    private class LinkedIterator implements Iterator<Item> 
+    {
+        private Deque<Item>.Node current;
+
+        public LinkedIterator(Deque<Item>.Node first)
+        {
+            current=first;
+        }
+
+        public boolean hasNext()
+         { return current != null;}
+        public void remove()
+         { throw new UnsupportedOperationException();}
+
+        public Item next() {
+            if (!hasNext()) throw new NoSuchElementException();
+            Item item = current.item;
+            current = current.next; 
+            return item;
+        }
+    }
 
     // unit testing (required)
     public static void main(String[] args)
