@@ -38,6 +38,17 @@ public class Deque<Item> implements Iterable<Item> {
 
     // add the item to the back
     public void addLast(Item item)
+    {   
+        Node last=new Node();
+        for(Node x=first;x!=null ; x=x.next) 
+        last=x;
+        Node lastButOne=new Node();
+        lastButOne=last;
+        last=new Node();
+        last.item=item;
+        lastButOne.next=last;
+        n++;
+    }
 
     // remove and return the item from the front
     public Item removeFirst()
